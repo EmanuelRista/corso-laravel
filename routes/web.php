@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UtenteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/test', function () {
+    return 'Questo è un test!';
+});
+
+Route::get('/dati', function () {
+    return ['nome' => 'Mario', 'cognome' => 'Rossi'];
+});
+
+/* Route::get('/utente/{id}', function ($id = 'nessuno') {
+    return 'Utente con id: ' . $id;
+}); */
+
+Route::get('/utente/{id?}', [UtenteController::class, 'mostra']);
+
+Route::get('/contatti', function () {
+    return 'Pagina dei contatti';
+})->name('contatti');
+
+//$urlContatti = route('contatti'); //output: /contatti
